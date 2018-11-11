@@ -9,8 +9,6 @@ $request = Request::createFromGlobals();
 
 $loader = new Twig_Loader_Filesystem('View', __DIR__ . '/src/Weather');
 $twig = new Twig_Environment($loader, ['cache' => __DIR__ . '/cache', 'debug' => true]);
-echo ($request->getRequestUri());
-echo ('<br>');
 $controller = new \Weather\Controller\StartPage();
 switch ($request->getRequestUri()) {
     case '/oop/wapi_week':
