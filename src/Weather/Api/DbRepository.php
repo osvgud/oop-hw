@@ -13,6 +13,7 @@ class DbRepository implements DataProvider
      */
     public function selectByDate(\DateTime $date): Weather
     {
+        echo 'DB REPOSITORY';
         $items = $this->selectAll();
         $result = new NullWeather();
 

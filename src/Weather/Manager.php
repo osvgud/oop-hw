@@ -15,25 +15,25 @@ class Manager
      */
     private $transporter;
 
-    public function getTodayInfo(): Weather
+    public function getTodayInfo(int $i): Weather
     {
-        return $this->getTransporter()->selectByDate(new \DateTime());
+        return $this->getTransporter($i)->selectByDate(new \DateTime());
     }
 
-    public function getWeekInfo(): array
+    public function getWeekInfo(int $i): array
     {
-        return $this->getTransporter()->selectByRange(new \DateTime(), new \DateTime('+7 days'));
+        return $this->getTransporter($i)->selectByRange(new \DateTime(), new \DateTime('+7 days'));
     }
 
-    private function getTransporter()
+    private function getTransporter(int $i)
     {
-//        if (null === $this->transporter) {
-//            $this->transporter = new DbRepository();
-//        }
-//        if (null === $this->transporter) {
-//            $this->transporter = new GoogleApi();
-//        }
-        if (null === $this->transporter) {
+        if ($i === 1) {
+            $this->transporter = new DbRepository();
+        }
+        if ($i === 2) {
+            $this->transporter = new GoogleApi();
+        }
+        if ($i === 3) {
             $this->transporter = new WeatherApi();
         }
 
